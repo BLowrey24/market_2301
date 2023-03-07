@@ -19,4 +19,9 @@ class Market
   def vendors_that_sell(item)
     vendors.select { |vendor| vendor.inventory.key?(item) }
   end
+
+  def sorted_item_list
+    items = vendors.flat_map { |vendor| vendor.inventory.keys.map(&:name) }
+    items.uniq.sort
+  end
 end
