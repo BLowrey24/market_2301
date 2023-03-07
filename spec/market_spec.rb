@@ -33,12 +33,18 @@ RSpec.describe Market do
   end
   
   describe '#add_vendor' do
-  it 'adds a vender to the markets vendors array' do
-    market.add_vendor(vendor1)
-    market.add_vendor(vendor2)
-    market.add_vendor(vendor3)
+    it 'adds a vender to the markets vendors array' do
+      market.add_vendor(vendor1)
+      market.add_vendor(vendor2)
+      market.add_vendor(vendor3)
 
-    expect(market.vendors).to eq([vendor1, vendor2, vendor3])
+      expect(market.vendors).to eq([vendor1, vendor2, vendor3])
+    end
+  end
+
+  describe '#vendor_names' do
+    it 'returns the name of all the vendors in an array' do
+      expect(market.vendor_names).to eq([vendor1.name, vendor2.name, vendor3.name])
     end
   end
 end
