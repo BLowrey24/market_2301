@@ -84,4 +84,13 @@ RSpec.describe Market do
     expect(market.total_inventory).to eq(expected_hash)
     end
   end
+
+  describe '#overstocked_items' do
+    it 'returns the item that is sold by more then one vendor and the quantity is over 50' do
+      market.add_vendor(vendor1)
+      market.add_vendor(vendor2)
+      market.add_vendor(vendor3)
+      expect(market.overstocked_items).to eq([item1])
+    end
+  end
 end
