@@ -59,4 +59,13 @@ RSpec.describe Market do
       expect(market.vendors_that_sell(item4)).to eq([vendor2])
     end
   end
+
+  describe '#sorted_item_list' do
+    it 'returns list of all the names of the items the vendors have in stock alphabetically without duplicates' do
+      market.add_vendor(vendor1)
+      market.add_vendor(vendor2)
+      market.add_vendor(vendor3)
+      expect(market.sorted_item_list).to eq(['Banana Nice Cream', 'Peach', 'Peach-Raspberry Nice Cream', 'Tomato'])
+    end
+  end
 end
