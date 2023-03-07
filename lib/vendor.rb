@@ -4,6 +4,10 @@ class Vendor
 
   def initialize(name)
     @name = name
-    @inventory = []
+    @inventory = {}
+  end
+
+  def check_stock(item)
+    inventory.key?(item) ? inventory[item] : 0
   end
 end
