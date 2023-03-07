@@ -35,6 +35,19 @@ class Market
       end
     end
   inventory
-  # require 'pry-byebug'; require 'pry'; binding.pry
+  end
+
+  def overstocked_items
+    overstocked_items = []
+    vendors.each do |vendor|
+      vendor.inventory.each do |item, quantity|
+        vendors_selling_item = vendors_that_sell(item)
+        total_quantity = vendors_selling_item.sum { |vendor| vendor.check_stock(item) }
+        if vendors_selling_item.length > 1 || total_quantity > 50
+          overstocked_items << item unless overstocked_items.include?(item)
+        end
+      end
+    end
+    overstocked_items
   end
 end

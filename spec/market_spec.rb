@@ -12,6 +12,7 @@ RSpec.describe Market do
   let(:item2) { Item.new({ name: 'Tomato', price: '$0.50' }) } 
   let(:item3) { Item.new({name: 'Peach-Raspberry Nice Cream', price: '$5.30'}) } 
   let(:item4) { Item.new({name: 'Banana Nice Cream', price: '$4.25'}) } 
+  let(:item5) { Item.new({name: 'Apple', price: '$0.25'}) } 
 
   before do
     vendor1.stock(item1, 35) 
@@ -91,6 +92,15 @@ RSpec.describe Market do
       market.add_vendor(vendor2)
       market.add_vendor(vendor3)
       expect(market.overstocked_items).to eq([item1])
+    end
+
+    it 'can return multiple items' do
+      vendor3.stock(item5, 55)
+      vendor3.stock(item2, 7)
+      market.add_vendor(vendor1)
+      market.add_vendor(vendor2)
+      market.add_vendor(vendor3)
+      expect(market.overstocked_items).to eq([item1, item2, item5])
     end
   end
 end
