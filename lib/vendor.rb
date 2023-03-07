@@ -10,4 +10,12 @@ class Vendor
   def check_stock(item)
     inventory.key?(item) ? inventory[item] : 0
   end
+
+  def stock(item, quantity)
+    if @inventory.key?(item)
+      @inventory[item] += quantity
+    else
+      @inventory[item] = quantity
+    end
+  end
 end
