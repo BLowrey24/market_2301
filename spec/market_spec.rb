@@ -49,4 +49,14 @@ RSpec.describe Market do
       expect(market.vendor_names).to eq([vendor1.name, vendor2.name, vendor3.name])
     end
   end
+
+  describe '#vendors_that_sell' do
+    it 'returns an array of the vendors that sell the item in the argument' do
+      market.add_vendor(vendor1)
+      market.add_vendor(vendor2)
+      market.add_vendor(vendor3)
+      expect(market.vendors_that_sell(item1)).to eq([vendor1, vendor3])
+      expect(market.vendors_that_sell(item4)).to eq([vendor2])
+    end
+  end
 end
